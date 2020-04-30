@@ -24,6 +24,9 @@ import { GalleryCardComponent } from './gallery/gallery-card/gallery-card.compon
 import { GalleryItemDetailComponent } from './gallery/gallery-item-detail/gallery-item-detail.component';
 import { GalleryItemDetailResolver } from './_resolvers/gallery-item-detail.resolver';
 import { GalleryListResolver } from './_resolvers/gallery-list.resolver';
+import { GalleryItemEditComponent } from './gallery/gallery-item-edit/gallery-item-edit.component';
+import { GalleryItemEditResolver } from './_resolvers/gallery-item-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -39,7 +42,8 @@ export function tokenGetter() {
     ListsComponent,
     MessagesComponent,
     GalleryCardComponent,
-    GalleryItemDetailComponent
+    GalleryItemDetailComponent,
+    GalleryItemEditComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,14 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [AuthService, ErrorInterceptorProvider, GalleryItemDetailResolver, GalleryListResolver],
+  providers: [
+    AuthService,
+    ErrorInterceptorProvider,
+    GalleryItemDetailResolver,
+    GalleryListResolver,
+    GalleryItemEditResolver,
+    PreventUnsavedChanges
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
