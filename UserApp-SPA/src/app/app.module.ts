@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { from } from 'rxjs';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery-9';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -27,6 +28,7 @@ import { GalleryListResolver } from './_resolvers/gallery-list.resolver';
 import { GalleryItemEditComponent } from './gallery/gallery-item-edit/gallery-item-edit.component';
 import { GalleryItemEditResolver } from './_resolvers/gallery-item-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { PictureEditorComponent } from './gallery/picture-editor/picture-editor.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -43,7 +45,8 @@ export function tokenGetter() {
     MessagesComponent,
     GalleryCardComponent,
     GalleryItemDetailComponent,
-    GalleryItemEditComponent
+    GalleryItemEditComponent,
+    PictureEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ export function tokenGetter() {
     TabsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     NgxGalleryModule,
+    FileUploadModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

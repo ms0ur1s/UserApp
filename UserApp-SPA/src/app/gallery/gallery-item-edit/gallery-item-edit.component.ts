@@ -14,6 +14,7 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class GalleryItemEditComponent implements OnInit {
   @ViewChild('editForm', { static: true }) editForm: NgForm;
   user: User;
+  pictureUrl: string;
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
     if (this.editForm.dirty) {
@@ -32,6 +33,7 @@ export class GalleryItemEditComponent implements OnInit {
     this.route.data.subscribe((data) => {
       this.user = data['user'];
     });
+    this.authService.currentPictureUrl.subscribe(pictureUrl => this.pictureUrl = pictureUrl);
   }
 
   updateUser() {
@@ -46,5 +48,9 @@ export class GalleryItemEditComponent implements OnInit {
           this.alertify.error(error);
         }
       );
+  }
+
+  updateMainPicture(pictureUrl) {
+    this.user.pictureUrl = pictureUrl;
   }
 }

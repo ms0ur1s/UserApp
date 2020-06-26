@@ -1,3 +1,15 @@
 .dropdown-toggle, .dropdown-item {
     cursor: pointer;
 }
+
+.user-icon {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    border: 2px solid #fff;
+}
+
+.user-icon img {
+    max-width: 40px;
+}
